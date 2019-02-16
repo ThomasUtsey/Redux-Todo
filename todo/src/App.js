@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Todo from './components/todo'
 import TodoForm from './components/toDoForm';
 import TodoList from "./components/todolist";
 import {connect} from "react-redux"
@@ -23,6 +24,7 @@ class App extends Component {
     return (
       <div className="App">
       <h1>{this.props.listName}</h1>
+    
       <TodoList/>
       <TodoForm/>
       </div>

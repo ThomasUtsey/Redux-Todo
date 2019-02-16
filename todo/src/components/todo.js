@@ -6,15 +6,35 @@ import { addToDo, removeToDo, ADDTODO, REMOVETODO} from '../actions/actions'
 export default class Todo extends Component {
 constructor(props){
   super (props);
-console.log(addToDo)
+  this.state = {
+    todo: props.todo,
+    completed: false,
+    id: props.todo.id
+  }
+  todoCompletehandler=() =>{
+
+    this.props.clickTodo(this.state.id)
+    this.setState({completed:true})
+}
 }
 
 
 
-  render() {
-    <form onSubmit={addToDo}>
-         <input id="e.target.value" type="text" placeholder="Add a comment" style = {{border: 'none'}} />
-    </form>
+render() {
+
+  if (this.state.todo.completed == true) {
+      return <div style={{ textDecoration: 'line-through'}}
+                  onClick={this.todoCompletehandler}> {this.state.todo.todo} </div>
+  } else {
+      return <div onClick={this.todoCompletehandler}> {this.state.todo.todo} </div>
   }
-  }
+}
+}
+
+function mapStateToProps(state){
+return {}
+
+}
+
+export default connect(mapStateToProps,{clickTodo:clickTodo})(Todo)
 
