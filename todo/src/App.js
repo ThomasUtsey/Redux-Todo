@@ -1,39 +1,33 @@
 import React, { Component } from 'react';
+
 import './App.css';
-import Todo from './components/todo'
-import TodoForm from './components/toDoForm';
+
 import TodoList from "./components/todolist";
 import {connect} from "react-redux"
+import TodoForm from './components/toDoForm';
 
 
 class App extends Component {
-  constructor (props){
-    super (props);
-    this.state={
-      listName:'',
-    }
-  }
-  addTodo = (input)=>{
-    let newTodo ={
-      todo: input,
-      completed: false
-    }
+    constructor(props){
+        super(props);
+        this.state={
+            title:"",
+        }
 
-  }
-  render() {
-    return (
-      <div className="App">
-      <h1>{this.props.listName}</h1>
-    
-      <TodoList/>
-      <TodoForm/>
-      </div>
-    );
-  }
+    }
+    render() {
+        return (
+            <div className="App">
+                <h1>{this.props.title}</h1>
+                <TodoList/>
+                <TodoForm/>
+               
+            </div>
+        );
+    }
+}
+function mapStateToProps(state){
+    return{ title: state.title}
 }
 
-function mstp(state){
-  return{listName: state.title }
-}
-
-export default connect(mstp)(App)
+export default connect(mapStateToProps)(App) 

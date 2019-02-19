@@ -1,40 +1,40 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { addToDo, removeToDo, ADDTODO, REMOVETODO} from '../actions/actions'
+import React from 'react';
+import {connect} from "react-redux";
+import {targTodo} from "../actions/actions";
 
 
-export default class Todo extends Component {
-constructor(props){
-  super (props);
-  this.state = {
-    todo: props.todo,
-    completed: false,
-    id: props.todo.id
-  }
-  todoCompletehandler=() =>{
+class Todo extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            todo: props.todo,
+            completed: false,
+        
+            id: props.todo.id
+        }
+    }
 
-    this.props.clickTodo(this.state.id)
-    this.setState({completed:true})
-}
-}
+    todoHandler=() =>{
 
+        this.props.targTodo(this.state.id)
+        this.setState({completed:true})
+    }
 
+    render() {
 
-render() {
-
-  if (this.state.todo.completed == true) {
-      return <div style={{ textDecoration: 'line-through'}}
-                  onClick={this.todoCompletehandler}> {this.state.todo.todo} </div>
-  } else {
-      return <div onClick={this.todoCompletehandler}> {this.state.todo.todo} </div>
-  }
-}
+        if (this.state.todo.completed === true) {
+            return <div style={{ textDecoration: 'line-through'}}
+                        onClick={this.todoHandler}> {this.state.todo.todo} </div>
+        } else {
+            return <div onClick={this.todoHandler}> {this.state.todo.todo} </div>
+        }
+    }
 }
 
 function mapStateToProps(state){
-return {}
+    return {}
 
 }
 
-export default connect(mapStateToProps,{clickTodo:clickTodo})(Todo)
+export default connect(mapStateToProps,{targTodo:targTodo})(Todo)
 

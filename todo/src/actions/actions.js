@@ -1,10 +1,25 @@
-export const ADDTODO =  'ADDTODO';
-export const REMOVETODO = 'REMOVETODO';
+export const ADD_TODO="ADD_TODO";
+export const CLEAR_TODO="CLEAR_TODO";
+export const CLICK_TODO="CLICK_TODO";
 
-export const addToDo = (payload) => {
-  return {type: ADDTODO, payload:'add'};
+
+
+export function addTodo(text, id){
+      let newTodo={
+          id: Date.now(),
+          todo:text,
+          completed:false
+
+    }
+    return {type:ADD_TODO,payload:newTodo}
 }
 
-export const removeToDo = (payload) => {
-  return {type: REMOVETODO, payload:'remove'};
+export function clearTodo(){
+
+    return {type:CLEAR_TODO,payload:""}
 }
+
+export function targTodo(id){
+
+    return {type:CLICK_TODO,payload:id}
+} 
